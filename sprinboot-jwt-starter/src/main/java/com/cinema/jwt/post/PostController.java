@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
@@ -24,14 +25,14 @@ public class PostController {
 
     private static final String UPLOAD_FOLDER = "src/web/images/";
     private final UserRepository userRepository;
-
-
     private final PostRepository postRepository;
+    private final PostService postService;
 
     public PostController(PostRepository postRepository,
-                          UserRepository userRepository) {
+                          UserRepository userRepository, PostService postService) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
+        this.postService = postService;
     }
 
 
@@ -69,6 +70,11 @@ public class PostController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Post> updatePost(@PathVariable Integer id, @RequestParam("file") MultipartFile file, @RequestParam("body") String request) throws IOException {
+        return postService.editPost(file, request, id);
     }
 
 
