@@ -1,0 +1,19 @@
+server:
+  port: 4000
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5332/jwt
+    username: cinemacodes
+    password: password
+    properties:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+    database: postgresql
+  main:
+    web-application-type: servlet
