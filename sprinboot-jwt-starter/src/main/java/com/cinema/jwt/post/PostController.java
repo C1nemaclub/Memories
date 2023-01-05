@@ -2,12 +2,18 @@ package com.cinema.jwt.post;
 
 import com.cinema.jwt.user.User;
 import com.cinema.jwt.user.UserRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +21,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/posts")
 public class PostController {
+
+    private static final String UPLOAD_FOLDER = "src/web/images/";
     private final UserRepository userRepository;
 
 
@@ -38,6 +46,31 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/create")
+    public ResponseEntity<Post> createPost(@RequestParam("file")MultipartFile file, @RequestParam("body") String request, @RequestParam("authorid") Integer authorid) throws JsonProcessingException, FileNotFoundException {
+        try{
+
+            FileOutputStream imageOutput = new FileOutputStream(UPLOAD_FOLDER  + file.getOriginalFilename());
+            imageOutput.write(file.getBytes()); //Write
+            Path path = Path.of(UPLOAD_FOLDER +file.getOriginalFilename()).toRealPath();  // Create a path to the image with the Post id
+
+            Optional<User> user = userRepository.findById(authorid); //Get user from repository with the id from the request
+            ObjectMapper objectMapper = new ObjectMapper(); // Create new object mapper
+            Post post = objectMapper.readValue(request, Post.class); //Map the Request body to the Post class Fields
+            post.setUser(user.get()); //Set the user to the post with the user found before
+            post.getUser().setPassword(null); //Set the user password to null from the post
+            post.setImageRef(path.toString());
+            postRepository.save(post);
+
+            return ResponseEntity.ok().body(post);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<List<Post>> getPostsByAuthor(@PathVariable Integer id) {
