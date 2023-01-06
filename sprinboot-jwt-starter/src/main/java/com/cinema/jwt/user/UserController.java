@@ -3,11 +3,10 @@ package com.cinema.jwt.user;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @RestController
@@ -31,5 +30,11 @@ public class UserController {
         } else{
             return ResponseEntity.notFound().build();
         }
+    }
+
+
+    @PutMapping("/me/{id}")
+    public ResponseEntity<String> setAvatar(@PathVariable Integer id, @RequestParam("file") MultipartFile file) throws IOException {
+        return ResponseEntity.ok(userService.updateAvatar(id, file));
     }
 }

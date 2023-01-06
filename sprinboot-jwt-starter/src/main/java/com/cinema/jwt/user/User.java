@@ -24,7 +24,7 @@ import java.util.Set;
 @Table(name = "_user")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue // Strategy set to to AUTO as default
+    @GeneratedValue // Strategy set  to AUTO as default
     private Integer id;
 
     @OneToMany(mappedBy = "user")
@@ -35,6 +35,7 @@ public class User implements UserDetails {
     private String lastname;
     private String email;
     private String password;
+    private String avatar;
 
     @Enumerated(EnumType.STRING)
     private Role role;
