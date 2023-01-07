@@ -26,7 +26,7 @@ export class RegisterComponent {
       password: this.password,
     };
     this.userService.register(registerData).subscribe((response: any) => {
-      console.log(response);
+      this.userService.setToken(response.token);
     });
   }
 }

@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class AppComponent {
   title = 'client';
   user: User;
+  token: string = '';
   subscription: Subscription;
 
   constructor(private userService: UserService, private route: Router) {
@@ -22,6 +23,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.user = this.userService.getUser();
+    this.token = this.userService.getToken();
     if (!this.user) {
       console.log('Going Login');
       this.route.navigate(['/login']);

@@ -15,6 +15,7 @@ const httpOptions = {
 })
 export class UserService {
   user: User;
+  token: string = localStorage.getItem('token') || '';
   userSubject: Subject<User>;
   constructor(private http: HttpClient) {
     this.userSubject = new Subject<User>();
@@ -24,7 +25,15 @@ export class UserService {
     return this.user;
   }
 
-  setUser(): void {}
+  setToken(token: string): void {
+    this.token = token;
+    localStorage.setItem('token', token);
+  }
+  getToken(): string {
+    return this.token;
+  }
+
+  setUser(): any {}
   setSubject(): Observable<any> {
     return this.userSubject.asObservable();
   }
