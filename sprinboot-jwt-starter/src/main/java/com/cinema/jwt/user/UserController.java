@@ -1,7 +1,9 @@
 package com.cinema.jwt.user;
 
 
+import com.cinema.jwt.config.JwtService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,9 +16,12 @@ import java.util.Optional;
 @RequestMapping("/api/v1/users")
 public class UserController {
 
+    private final JwtService jwtService;
+
     private final UserRepository userRepository;
     private final UserService userService;
-    public UserController(UserRepository userRepository, UserService userService) {
+    public UserController(JwtService jwtService, UserRepository userRepository, UserService userService) {
+        this.jwtService = jwtService;
         this.userRepository = userRepository;
         this.userService = userService;
     }
@@ -31,6 +36,24 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserRequest> getMyself(@RequestHeader HttpHeaders headers) {
+        String token =  headers.getFirst(HttpHeaders.AUTHORIZATION).substring(7);
+        String email = jwtService.extractUsername(token);
+        Optional<User> user = userRepository.findByEmail(email);
+        if(user.isPresent()){
+        UserRequest userRequest = new UserRequest(user.get().getEmail(),
+                user.get().getFirstname(),
+                user.get().getLastname(),
+                user.get().getAvatar(),
+                user.get().getPosts());
+        return ResponseEntity.ok().body(userRequest);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
+    };
 
 
     @PutMapping("/me/{id}")

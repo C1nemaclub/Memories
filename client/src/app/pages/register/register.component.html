@@ -9,24 +9,42 @@
       </p>
     </div>
     <div class="form-container">
-      <form>
+      <form (ngSubmit)="onSubmit()">
         <div class="row">
           <span class="p-float-label input-group">
-            <input id="float-input" type="text" pInputText />
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              [(ngModel)]="firstname"
+              name="firstname"
+            />
             <label for="float-input">FirstName</label>
           </span>
           <span class="p-float-label input-group">
-            <input id="float-input" type="text" pInputText />
+            <input
+              id="float-input"
+              type="text"
+              pInputText
+              [(ngModel)]="lastname"
+              name="lastname"
+            />
             <label for="float-input">Lastname</label>
           </span>
         </div>
         <span class="p-float-label input-group">
-          <input id="float-input" type="email" pInputText />
+          <input
+            id="float-input"
+            type="email"
+            pInputText
+            [(ngModel)]="email"
+            name="email"
+          />
           <label for="float-input">Email</label>
         </span>
         <div class="row">
           <span class="p-float-label input-group">
-            <p-password>
+            <p-password [(ngModel)]="password" name="password">
               <ng-template pTemplate="header">
                 <h6>Pick a password</h6>
               </ng-template>
@@ -43,7 +61,12 @@
             <label for="float-input">Password</label>
           </span>
           <span class="p-float-label input-group">
-            <p-password [feedback]="true">
+            <p-password
+              [feedback]="true"
+              [(ngModel)]="confirmPassword"
+              name="confirmPassword"
+              [required]="true"
+            >
               <ng-template pTemplate="header">
                 <h6>Passwords don't match</h6>
               </ng-template>

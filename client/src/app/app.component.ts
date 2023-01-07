@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from './services/user.service';
 import { User } from './interfaces/User';
 import { Router } from '@angular/router'; // import router from angular router
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +12,19 @@ import { Router } from '@angular/router'; // import router from angular router
 export class AppComponent {
   title = 'client';
   user: User;
+  subscription: Subscription;
 
-  constructor(private userService: UserService, private route: Router) {}
+  constructor(private userService: UserService, private route: Router) {
+    this.subscription = this.userService.setSubject().subscribe((value) => {
+      console.log(value);
+    });
+  }
 
   ngOnInit() {
     this.user = this.userService.getUser();
     if (!this.user) {
       console.log('Going Login');
-      this.route.navigate(['/register']);
+      this.route.navigate(['/login']);
     } else if (this.user) {
       console.log('Going Home');
       this.route.navigate(['/home']);
