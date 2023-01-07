@@ -11,6 +11,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { ButtonModule } from 'primeng/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   {
@@ -44,8 +47,11 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    InputTextModule,
     RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    InputTextModule,
+    PasswordModule,
+    ButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

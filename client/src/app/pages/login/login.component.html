@@ -2,15 +2,41 @@
   <app-hero class="app-hero"></app-hero>
   <div class="right-container">
     <div class="top">
-      <img src="../../../assets/Logo.svg" alt="" />
-      <h2>Hello Again!</h2>
+      <img src="../../../assets/Logo.svg" alt="" class="logo" />
+      <h2 class="header-title">Hello Again!</h2>
+      <p class="header-paragraph">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </p>
     </div>
     <div class="form-container">
-      <span class="p-float-label">
-        <input id="float-input" type="text" pInputText />
-        <label for="float-input">Username</label>
-      </span>
+      <form>
+        <span class="p-float-label input-group">
+          <input id="float-input" type="text" pInputText />
+          <label for="float-input">Username</label>
+        </span>
+        <span class="p-float-label input-group">
+          <p-password>
+            <ng-template pTemplate="header">
+              <h6>Pick a password</h6>
+            </ng-template>
+            <ng-template pTemplate="footer">
+              <p class="mt-2">Suggestions</p>
+              <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                <li>At least one lowercase</li>
+                <li>At least one uppercase</li>
+                <li>At least one numeric</li>
+                <li>Minimum 8 characters</li>
+              </ul>
+            </ng-template>
+          </p-password>
+          <label for="float-input">Password</label>
+        </span>
+        <button pButton type="submit" class="submit-btn">Login</button>
+      </form>
     </div>
-    <a routerLink="/register">Go To Register</a>
+    <p class="go-to" f>
+      <span>Don't have an account yet? </span
+      ><a routerLink="/register">Register</a>
+    </p>
   </div>
 </section>
