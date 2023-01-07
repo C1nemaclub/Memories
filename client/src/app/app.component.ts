@@ -18,7 +18,7 @@ export class AppComponent {
     this.user = this.userService.getUser();
     if (!this.user) {
       console.log('Going Login');
-      this.route.navigate(['/login']);
+      this.route.navigate(['/register']);
     } else if (this.user) {
       console.log('Going Home');
       this.route.navigate(['/home']);

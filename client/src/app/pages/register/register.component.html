@@ -1,8 +1,61 @@
 <section class="auth-section login-section">
   <app-hero class="app-hero"></app-hero>
   <div class="right-container">
-    <img src="../../../assets/Logo.svg" alt="" />
-    <h2>Register</h2>
-    <a routerLink="/login">Go To Login</a>
+    <div class="top">
+      <img src="../../../assets/Logo.svg" alt="" class="logo" />
+      <h2 class="header-title">Get Started!</h2>
+      <p class="header-paragraph">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </p>
+    </div>
+    <div class="form-container">
+      <form>
+        <div class="row">
+          <span class="p-float-label input-group">
+            <input id="float-input" type="text" pInputText />
+            <label for="float-input">FirstName</label>
+          </span>
+          <span class="p-float-label input-group">
+            <input id="float-input" type="text" pInputText />
+            <label for="float-input">Lastname</label>
+          </span>
+        </div>
+        <span class="p-float-label input-group">
+          <input id="float-input" type="email" pInputText />
+          <label for="float-input">Email</label>
+        </span>
+        <div class="row">
+          <span class="p-float-label input-group">
+            <p-password>
+              <ng-template pTemplate="header">
+                <h6>Pick a password</h6>
+              </ng-template>
+              <ng-template pTemplate="footer">
+                <p class="mt-2">Suggestions</p>
+                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                  <li>At least one lowercase</li>
+                  <li>At least one uppercase</li>
+                  <li>At least one numeric</li>
+                  <li>Minimum 8 characters</li>
+                </ul>
+              </ng-template>
+            </p-password>
+            <label for="float-input">Password</label>
+          </span>
+          <span class="p-float-label input-group">
+            <p-password [feedback]="true">
+              <ng-template pTemplate="header">
+                <h6>Passwords don't match</h6>
+              </ng-template>
+            </p-password>
+            <label for="float-input">Confirm Password</label>
+          </span>
+        </div>
+        <button pButton type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+    <p class="go-to" f>
+      <span>Already have an account? </span><a routerLink="/login">Login</a>
+    </p>
   </div>
 </section>
