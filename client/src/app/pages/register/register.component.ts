@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,12 +8,12 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  firstname: string = '';
-  lastname: string = '';
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
-  constructor(private userService: UserService) {}
+  firstname: string = 'sam';
+  lastname: string = 'sam';
+  email: string = 'sam@gmail.com';
+  password: string = '123';
+  confirmPassword: string = '123';
+  constructor(private userService: UserService, private route: Router) {}
 
   onSubmit() {
     if (this.password !== this.confirmPassword) {
@@ -26,7 +27,8 @@ export class RegisterComponent {
       password: this.password,
     };
     this.userService.register(registerData).subscribe((response: any) => {
-      this.userService.setToken(response.token);
+      //this.userService.setToken(response.token);
+      this.route.navigate(['/login']);
     });
   }
 }

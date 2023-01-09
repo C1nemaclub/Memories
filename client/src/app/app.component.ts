@@ -17,19 +17,16 @@ export class AppComponent {
 
   constructor(private userService: UserService, private route: Router) {
     this.subscription = this.userService.setSubject().subscribe((value) => {
-      console.log(value);
+      this.user = value;
     });
   }
 
   ngOnInit() {
-    this.user = this.userService.getUser();
     this.token = this.userService.getToken();
-    if (!this.user) {
-      console.log('Going Login');
-      this.route.navigate(['/login']);
-    } else if (this.user) {
-      console.log('Going Home');
+    if (this.token != '') {
       this.route.navigate(['/home']);
+    } else {
+      this.route.navigate(['/login']);
     }
   }
 }

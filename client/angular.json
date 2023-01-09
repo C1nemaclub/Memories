@@ -66,6 +66,7 @@
               "browserTarget": "client:build:production"
             },
             "development": {
+              "proxyConfig": "proxy.conf.json",
               "browserTarget": "client:build:development"
             }
           },

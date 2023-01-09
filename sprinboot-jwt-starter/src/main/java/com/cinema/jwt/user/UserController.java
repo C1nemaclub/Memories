@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @Slf4j
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/v1/users")
 public class UserController {
 
@@ -37,13 +38,16 @@ public class UserController {
         }
     }
 
-    @GetMapping("/me")
+
+    @GetMapping("/profile")
     public ResponseEntity<UserRequest> getMyself(@RequestHeader HttpHeaders headers) {
+        System.out.println("Profile");
         String token =  headers.getFirst(HttpHeaders.AUTHORIZATION).substring(7);
         String email = jwtService.extractUsername(token);
         Optional<User> user = userRepository.findByEmail(email);
         if(user.isPresent()){
-        UserRequest userRequest = new UserRequest(user.get().getEmail(),
+        UserRequest userRequest = new UserRequest(
+                user.get().getEmail(),
                 user.get().getFirstname(),
                 user.get().getLastname(),
                 user.get().getAvatar(),

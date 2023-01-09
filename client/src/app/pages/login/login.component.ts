@@ -7,15 +7,23 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  email: string = '';
-  password: string = '';
+  email: string = 'sam@gmail.com';
+  password: string = '123';
   constructor(private userService: UserService) {}
 
   onSubmit() {
     const loginData = {
-      username: this.email,
+      email: this.email,
       password: this.password,
     };
-    this.userService.login(loginData);
+    this.userService.login(loginData).subscribe((res: any) => {
+      console.log(res);
+      this.userService.setToken(res.token);
+      this.reloadPage();
+    });
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 }

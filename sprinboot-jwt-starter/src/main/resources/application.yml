@@ -7,9 +7,9 @@ spring:
     username: cinemacodes
     password: password
     properties:
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
