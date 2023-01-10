@@ -1,7 +1,6 @@
 .sidebar {
   width: 20%;
   min-width: 250px;
-  height: 100%;
   padding: 2em;
   display: flex;
   flex-direction: column;
@@ -40,8 +39,25 @@
       display: flex;
       align-items: flex-start;
       flex-direction: column;
+      gap: 10px;
       li {
         font-family: "Poppins";
+        a {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 10px;
+          color: #000;
+          i {
+            font-size: 1.2rem;
+          }
+          p {
+            font-size: 1.1rem;
+          }
+          &:hover {
+            color: #8c8c8c;
+          }
+        }
       }
       li:last-child {
         justify-self: flex-end;

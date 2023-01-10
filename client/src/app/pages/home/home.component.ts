@@ -11,6 +11,7 @@ import { PostService } from 'src/app/services/post.service';
 export class HomeComponent {
   user: any = null;
   posts: any[] = [];
+  displayNewPost: boolean = false;
   constructor(
     private userService: UserService,
     private route: Router,
@@ -31,5 +32,9 @@ export class HomeComponent {
     this.postService.getAllPosts().subscribe((res: any) => {
       this.posts = res;
     });
+  }
+
+  toggleNewPost() {
+    this.displayNewPost = !this.displayNewPost;
   }
 }

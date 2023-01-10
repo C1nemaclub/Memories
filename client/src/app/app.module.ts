@@ -16,6 +16,8 @@ import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PostComponent } from './components/post/post.component';
+import { ImageModule } from 'primeng/image';
+import { DialogModule } from 'primeng/dialog';
 
 const appRoutes: Routes = [
   {
@@ -57,6 +59,8 @@ const appRoutes: Routes = [
     PasswordModule,
     ButtonModule,
     FormsModule,
+    ImageModule,
+    DialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

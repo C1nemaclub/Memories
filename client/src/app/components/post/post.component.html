@@ -1,14 +1,18 @@
 <div class="post-card">
   <div class="top">
     <div class="user">
-      <img src="../../../assets/Logo.svg" alt="" />
+      <img src="../../../assets/Logo.svg" alt="avatar" class="avatar" />
       <p class="name">{{ post.user.firstname }}</p>
     </div>
-
-    <p>{{ post.description }}</p>
-    <div class="img-container">
-      <img src="http://localhost:4000/images/{{ post.imageRef }}" alt="post" />
-    </div>
+  </div>
+  <p class="description">{{ post.description }}</p>
+  <div class="img-container">
+    <img
+      src="http://localhost:4000/images/{{ post.imageRef }}"
+      alt="post"
+      class="post-img"
+      width="100%"
+      height="100%"
+    />
   </div>
 </div>
- 

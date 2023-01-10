@@ -10,6 +10,14 @@
     button {
       padding: 0.4em 0.8em;
       font-size: 1rem;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      i {
+        color: lime;
+      }
     }
     width: 80%;
   }
