@@ -1,0 +1,40 @@
+header {
+  width: 100%;
+  background: #fff;
+  padding: 18px 3.75em;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      p {
+        font-family: "Poppins";
+      }
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      img {
+        border-radius: 100px;
+        width: 40px;
+        height: 40px;
+        background: red;
+      }
+      button {
+        font-size: 1.1rem;
+        padding: 0.4em 0.8em;
+      }
+    }
+  }
+}

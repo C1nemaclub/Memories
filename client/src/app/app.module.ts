@@ -14,6 +14,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { PostComponent } from './components/post/post.component';
 
 const appRoutes: Routes = [
   {
@@ -42,6 +44,8 @@ const appRoutes: Routes = [
     HomeComponent,
     HeaderComponent,
     HeroComponent,
+    SidebarComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,

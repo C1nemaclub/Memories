@@ -1,0 +1,75 @@
+.sidebar {
+  width: 20%;
+  min-width: 250px;
+  height: 100%;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  nav {
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    .profile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 100px;
+        background: steelblue;
+      }
+      .name {
+        font-family: "Poppins";
+        color: #8c8c8c;
+        font-size: 1rem;
+      }
+    }
+    ul {
+      min-height: 500px;
+      position: relative;
+      height: 100%;
+      margin-top: 2rem;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      li {
+        font-family: "Poppins";
+      }
+      li:last-child {
+        justify-self: flex-end;
+        align-self: flex-end;
+      }
+    }
+  }
+}
+
+// <div class="sidebar">
+//   <nav>
+//     <div class="profile">
+//       <img src="../../../assets/Logo.svg" alt="" />
+//       <p class="name">Sam Henderson</p>
+//     </div>
+//     <ul>
+//       <li>
+//         <a routerLink="/">Home</a>
+//       </li>
+//       <li>
+//         <a routerLink="/Home">Profile</a>
+//       </li>
+//       <li>
+//         <a routerLink="/Home">Photos</a>
+//       </li>
+//       <li>
+//         <a routerLink="/settings">Settings</a>
+//       </li>
+//     </ul>
+//   </nav>
+// </div>

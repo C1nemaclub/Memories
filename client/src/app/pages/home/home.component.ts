@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +10,26 @@ import { UserService } from '../../services/user.service';
 })
 export class HomeComponent {
   user: any = null;
-  constructor(private userService: UserService) {}
+  posts: any[] = [];
+  constructor(
+    private userService: UserService,
+    private route: Router,
+    private postService: PostService
+  ) {}
 
   ngOnInit() {
-    this.userService.fetchLoggedUser().subscribe((res: any) => {
-      console.log(res);
-
-      this.user = res;
+    this.userService.fetchLoggedUser().subscribe(
+      (res: any) => {
+        this.user = res;
+      },
+      (e: any) => {
+        if (e.status === 403) {
+          this.route.navigate(['/login']);
+        }
+      }
+    );
+    this.postService.getAllPosts().subscribe((res: any) => {
+      this.posts = res;
     });
   }
 }

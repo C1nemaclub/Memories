@@ -3,6 +3,8 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
 }
 html {
   font-size: 100%;
@@ -11,9 +13,12 @@ body {
   height: 100%;
   min-height: 100vh;
   width: 100%;
+  //padding: 2em;
+  background: var(--bg-color);
 }
 :root {
   --main-color: #3260d6;
+  --bg-color: #f3f3f3;
 }
 
 .auth-section {
@@ -125,4 +130,14 @@ body {
   .right-container {
     width: 100%;
   }
+}
+
+.section {
+  width: 85%;
+  min-height: 100vh;
+  height: 100%;
+  padding: 2em;
+  border: 2px solid blue;
+  margin: auto;
+  margin-top: 6.75rem;
 }

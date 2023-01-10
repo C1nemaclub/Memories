@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Slf4j
 @RestController
@@ -25,6 +26,7 @@ import java.util.Optional;
 public class PostController {
 
     private static final String UPLOAD_FOLDER = "src/web/images/";
+    private static final String UPLOAD_DIR = "src/main/resources/static/images/";
     private final UserRepository userRepository;
     private final PostRepository postRepository;
     private final PostService postService;
@@ -38,31 +40,27 @@ public class PostController {
 
 
     @PostMapping("/new")
-    public ResponseEntity<Post> newPost(@RequestBody postRequest request) {
-        Optional<User> user = userRepository.findById(request.author_id);
-        Post post = new Post(null, user.get(),request.title,request.description,request.author,request.imageRef);
-        postRepository.save(post);
-        if(post != null){
-        return new ResponseEntity<>(post, HttpStatus.CREATED);
-        } else{
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<String>  uploadFile(@RequestParam("file")MultipartFile file) throws IOException {
+        System.out.println(file);
+        FileOutputStream output  = new FileOutputStream(UPLOAD_DIR + file.getOriginalFilename());
+        output.write(file.getBytes());
+        Path path = Path.of(UPLOAD_DIR + file.getOriginalFilename());
+        return ResponseEntity.ok("http://localhost:4000/"+ file.getOriginalFilename());
     }
 
     @PostMapping("/create")
     public ResponseEntity<Post> createPost(@RequestParam("file")MultipartFile file, @RequestParam("body") String request, @RequestParam("authorid") Integer authorid) throws JsonProcessingException, FileNotFoundException {
         try{
 
-            FileOutputStream imageOutput = new FileOutputStream(UPLOAD_FOLDER  + file.getOriginalFilename());
+            FileOutputStream imageOutput = new FileOutputStream(UPLOAD_DIR  + file.getOriginalFilename());
             imageOutput.write(file.getBytes()); //Write
-            Path path = Path.of(UPLOAD_FOLDER +file.getOriginalFilename()).toRealPath();  // Create a path to the image with the Post id
 
             Optional<User> user = userRepository.findById(authorid); //Get user from repository with the id from the request
             ObjectMapper objectMapper = new ObjectMapper(); // Create new object mapper
             Post post = objectMapper.readValue(request, Post.class); //Map the Request body to the Post class Fields
             post.setUser(user.get()); //Set the user to the post with the user found before
             post.getUser().setPassword(null); //Set the user password to null from the post
-            post.setImageRef(path.toString());
+            post.setImageRef(file.getOriginalFilename());
             postRepository.save(post);
 
             return ResponseEntity.ok().body(post);
