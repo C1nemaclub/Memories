@@ -6,25 +6,34 @@
     </div>
     <ul>
       <li>
-        <a routerLink="/">
+        <a routerLink="/" [ngClass]="{ active: hasRoute('/home') === true }">
           <i class="pi pi-home"></i>
           <p>Home</p>
         </a>
       </li>
       <li>
-        <a routerLink="/Home">
+        <a
+          routerLink="/profile"
+          [ngClass]="{ active: hasRoute('/profile') === true }"
+        >
           <i class="pi pi-user"></i>
           <p>Profile</p>
         </a>
       </li>
       <li>
-        <a routerLink="/Home">
+        <a
+          routerLink="/photos"
+          [ngClass]="{ active: hasRoute('/photos') === true }"
+        >
           <i class="pi pi-image"></i>
           <p>Photos</p>
         </a>
       </li>
       <li>
-        <a routerLink="/settings">
+        <a
+          routerLink="/settings"
+          [ngClass]="{ active: hasRoute('/settings') === true }"
+        >
           <i class="pi pi-cog"></i>
           <p>Settings</p>
         </a>

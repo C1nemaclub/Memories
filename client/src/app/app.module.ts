@@ -19,6 +19,7 @@ import { PostComponent } from './components/post/post.component';
 import { ImageModule } from 'primeng/image';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const appRoutes: Routes = [
   {
@@ -37,6 +38,10 @@ const appRoutes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
 ];
 
 @NgModule({
@@ -49,6 +54,7 @@ const appRoutes: Routes = [
     HeroComponent,
     SidebarComponent,
     PostComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

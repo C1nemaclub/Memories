@@ -58,6 +58,9 @@
             color: #8c8c8c;
           }
         }
+        .active {
+          color: var(--main-color);
+        }
       }
       li:last-child {
         justify-self: flex-end;

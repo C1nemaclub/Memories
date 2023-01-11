@@ -36,7 +36,7 @@ export class HomeComponent {
       }
     );
     this.postService.getAllPosts().subscribe((res: any) => {
-      this.posts = res;
+      this.posts = res.reverse();
     });
   }
 
@@ -64,6 +64,9 @@ export class HomeComponent {
     formData.append('authorid', this.user.id);
     this.postService.createPost(formData).subscribe((res) => {
       console.log(res);
+      this.displayNewPost = false;
+      this.image = '';
+      this.description = '';
     });
   }
 }

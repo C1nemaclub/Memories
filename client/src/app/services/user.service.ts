@@ -24,7 +24,7 @@ const httpOptions = {
 export class UserService {
   user: any = '';
   token: string = localStorage.getItem('token') || '';
-  public subject = new Subject<User>();
+  public subject = new BehaviorSubject<User>(this.user);
   constructor(private http: HttpClient, private route: Router) {}
 
   updateSubject(user: any): void {
