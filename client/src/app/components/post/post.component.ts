@@ -12,13 +12,10 @@ export class PostComponent {
   @Input() user: any = '';
 
   constructor(private sanitizer: DomSanitizer) {}
-  ngOnInit() {
-    console.log(this.post);
-  }
+  ngOnInit() {}
 
   sanitizeImageUrl(imageUrl: string): SafeUrl {
     const saneImg = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
-    console.log(saneImg);
     return saneImg;
   }
 }

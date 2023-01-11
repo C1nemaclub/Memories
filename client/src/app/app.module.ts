@@ -18,6 +18,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PostComponent } from './components/post/post.component';
 import { ImageModule } from 'primeng/image';
 import { DialogModule } from 'primeng/dialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 const appRoutes: Routes = [
   {
@@ -61,6 +62,7 @@ const appRoutes: Routes = [
     FormsModule,
     ImageModule,
     DialogModule,
+    InputTextareaModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -15,11 +15,7 @@ export class AppComponent {
   token: string = '';
   subscription: Subscription;
 
-  constructor(private userService: UserService, private route: Router) {
-    this.subscription = this.userService.setSubject().subscribe((value) => {
-      this.user = value;
-    });
-  }
+  constructor(private userService: UserService, private route: Router) {}
 
   ngOnInit() {
     this.token = this.userService.getToken();

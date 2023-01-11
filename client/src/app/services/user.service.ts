@@ -2,7 +2,7 @@ import { RegisterComponent } from './../pages/register/register.component';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../interfaces/User';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
 const httpOptions = {
@@ -22,15 +22,24 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class UserService {
-  user: User;
+  user: any = '';
   token: string = localStorage.getItem('token') || '';
-  userSubject: Subject<User>;
-  constructor(private http: HttpClient, private route: Router) {
-    this.userSubject = new Subject<User>();
+  public subject = new Subject<User>();
+  constructor(private http: HttpClient, private route: Router) {}
+
+  updateSubject(user: any): void {
+    this.subject.next(user); //emit the user result
+  }
+
+  getUserObservable(): Observable<any> {
+    return this.subject.asObservable();
   }
 
   getUser(): User {
     return this.user;
+  }
+  setUser(user: any): void {
+    this.user = user;
   }
 
   setToken(token: string): void {
@@ -40,13 +49,6 @@ export class UserService {
 
   getToken(): string {
     return this.token;
-  }
-
-  setUserSubject(): any {
-    this.userSubject.next(this.user);
-  }
-  setSubject(): Observable<any> {
-    return this.userSubject.asObservable();
   }
 
   login(loginData: any): any {
@@ -74,6 +76,4 @@ export class UserService {
       }),
     });
   }
-
-  
 }

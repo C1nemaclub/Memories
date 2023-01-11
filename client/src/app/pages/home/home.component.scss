@@ -29,3 +29,24 @@
     min-width: 200px;
   }
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  gap: 20px;
+  .input-group {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    textarea {
+      min-height: 100px;
+    }
+  }
+  .submit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -22,4 +22,32 @@
     </div>
   </div>
 </section>
-<p-dialog header="Title" [(visible)]="displayNewPost"> </p-dialog>
+<p-dialog header="New Post" [(visible)]="displayNewPost">
+  <div class="form-container">
+    <form (ngSubmit)="onSubmit()">
+      <span class="p-float-label input-group">
+        <textarea
+          pInputTextarea
+          [autoResize]="true"
+          [rows]="4"
+          [cols]="40"
+          name="description"
+          [required]="true"
+          id="float-input"
+          [(ngModel)]="description"
+        ></textarea>
+
+        <label for="float-input">Description</label>
+      </span>
+      <span class="input-group">
+        <input
+          type="file"
+          name="image"
+          placeholder="Browse"
+          (change)="onFileChange($event)"
+        />
+      </span>
+      <input pButton type="submit" class="submit-btn" />
+    </form>
+  </div>
+</p-dialog>
