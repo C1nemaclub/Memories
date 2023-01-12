@@ -20,7 +20,6 @@ export class ProfileComponent {
 
   ngOnInit() {
     this.user = this.userService.getUser();
-    console.log(this.user);
   }
 
   onSubmit() {

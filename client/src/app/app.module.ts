@@ -22,6 +22,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ToastModule } from 'primeng/toast';
 import { FileUploadModule } from 'primeng/fileupload';
+import { PhotosComponent } from './pages/photos/photos.component';
+import { CardModule } from 'primeng/card';
 
 const appRoutes: Routes = [
   {
@@ -44,6 +46,10 @@ const appRoutes: Routes = [
     path: 'profile',
     component: ProfileComponent,
   },
+  {
+    path: 'photos',
+    component: PhotosComponent,
+  },
 ];
 
 @NgModule({
@@ -57,6 +63,7 @@ const appRoutes: Routes = [
     SidebarComponent,
     PostComponent,
     ProfileComponent,
+    PhotosComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +80,7 @@ const appRoutes: Routes = [
     InputTextareaModule,
     ToastModule,
     FileUploadModule,
+    CardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,26 @@
+<section class="section photos-section">
+  <app-sidebar></app-sidebar>
+  <div class="main-content">
+    <div class="center card-grid">
+      <p-card
+        [style]="{ width: '360px' }"
+        styleClass="shadow-2"
+        class="post-card"
+        *ngFor="let post of posts"
+      >
+        <ng-template pTemplate="header">
+          <img
+            alt="card-image"
+            src="http://localhost:4000/images/{{ post.imageRef }}"
+          />
+        </ng-template>
+        <p contenteditable="true">
+          {{ post.description }}
+        </p>
+        <ng-template pTemplate="footer">
+          <p-button label="Save" icon="pi pi-check"></p-button>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</section>

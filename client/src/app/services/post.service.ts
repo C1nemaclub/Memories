@@ -32,4 +32,14 @@ export class PostService {
       }),
     });
   }
+
+  getPostsByUser(id: number) {
+    return this.http.get<any>(`/api/v1/posts/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        Authorization: 'Bearer ' + this.userService.getToken(),
+      }),
+    });
+  }
 }

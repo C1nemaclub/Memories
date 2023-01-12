@@ -24,7 +24,6 @@ export class HeaderComponent {
       .getUserObservable()
       .subscribe((res) => {
         this.user = res;
-        console.log('mlao', this.user);
       });
   }
 

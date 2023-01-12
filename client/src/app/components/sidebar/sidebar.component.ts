@@ -16,7 +16,6 @@ export class SidebarComponent {
   ngOnInit(): void {
     this.userService.subject.subscribe((res) => {
       this.user = res;
-      console.log(this.user.avatar);
     });
   }
 
