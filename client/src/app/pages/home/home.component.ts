@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Directive, ElementRef } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';

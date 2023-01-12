@@ -52,7 +52,6 @@ export class UserService {
   }
 
   login(loginData: any): any {
-    console.log('login', loginData);
     return this.http.post<User>(
       `http://localhost:4000/api/v1/auth/authenticate`,
       loginData,
@@ -60,7 +59,6 @@ export class UserService {
     );
   }
   register(registerData: any): any {
-    console.log('register', registerData);
     return this.http.post<User>(
       `http://localhost:4000/api/v1/auth/register`,
       registerData,

@@ -20,7 +20,17 @@
           {{ post.description }}
         </p>
         <ng-template pTemplate="footer">
-          <p-button label="Save" icon="pi pi-check"></p-button>
+          <div class="button-row">
+            <p-button label="Save" icon="pi pi-check"></p-button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Delete"
+              class="p-button-danger"
+              (click)="handleDangerClick(post)"
+            ></button>
+          </div>
         </ng-template>
       </p-card>
     </div>

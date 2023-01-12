@@ -22,4 +22,10 @@ export class PhotosComponent {
       this.postService.setPosts(this.posts);
     });
   }
+
+  handleDangerClick(post: any) {
+    this.postService.deletePost(post.id).subscribe((res) => {
+      this.posts = this.posts.filter((p) => p.id !== post.id);
+    });
+  }
 }

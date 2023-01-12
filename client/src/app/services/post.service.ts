@@ -48,6 +48,15 @@ export class PostService {
     });
   }
 
+  deletePost(id: number) {
+    return this.http.delete<Post>(`/api/v1/posts/${id}`, {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        Authorization: 'Bearer ' + this.userService.getToken(),
+      }),
+    });
+  }
+
   getPostsByUser(id: number) {
     return this.http.get<any>(`/api/v1/posts/${id}`, {
       headers: new HttpHeaders({

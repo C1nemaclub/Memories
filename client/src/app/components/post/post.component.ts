@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Directive, ElementRef } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { convertToParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -11,7 +10,16 @@ export class PostComponent {
   @Input() post: any = [];
   @Input() user: any = '';
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    { nativeElement }: ElementRef<HTMLImageElement>
+  ) {
+    const supports = 'loading' in HTMLImageElement.prototype;
+
+    if (supports) {
+      nativeElement.setAttribute('loading', 'lazy');
+    }
+  }
   ngOnInit() {}
 
   sanitizeImageUrl(imageUrl: string): SafeUrl {
