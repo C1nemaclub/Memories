@@ -25,8 +25,6 @@ export class PostService {
   }
 
   createPost(post: any) {
-    console.log('Service created post: ', post);
-
     return this.http.post<Post>(`/api/v1/posts/create`, post, {
       headers: new HttpHeaders({
         'Access-Control-Allow-Origin': '*',

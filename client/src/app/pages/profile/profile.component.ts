@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,11 @@ export class ProfileComponent {
   user: any = '';
   displayAvatarModal: boolean = false;
   image: any;
-  constructor(private userService: UserService, private route: Router) {}
+  constructor(
+    private userService: UserService,
+    private route: Router,
+    private postService: PostService
+  ) {}
 
   ngOnInit() {
     this.user = this.userService.getUser();

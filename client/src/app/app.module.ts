@@ -20,6 +20,8 @@ import { ImageModule } from 'primeng/image';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ToastModule } from 'primeng/toast';
+import { FileUploadModule } from 'primeng/fileupload';
 
 const appRoutes: Routes = [
   {
@@ -69,6 +71,8 @@ const appRoutes: Routes = [
     ImageModule,
     DialogModule,
     InputTextareaModule,
+    ToastModule,
+    FileUploadModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

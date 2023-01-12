@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  providers: [MessageService],
 })
 export class HomeComponent {
   user: any = null;
@@ -14,12 +16,14 @@ export class HomeComponent {
   displayNewPost: boolean = false;
   //Form info
   description: string = '';
-  image: any = '';
+  image: any = null;
+  maxFileSize: number = 1000000;
 
   constructor(
     private userService: UserService,
     private route: Router,
-    private postService: PostService
+    private postService: PostService,
+    private toast: MessageService
   ) {}
 
   ngOnInit() {
@@ -31,7 +35,16 @@ export class HomeComponent {
       },
       (e: any) => {
         if (e.status === 403) {
-          this.route.navigate(['/login']);
+          this.toast.add({
+            severity: 'warn',
+            summary: 'Info',
+            detail: 'Session Expired, Please Login Again',
+          });
+          setTimeout(() => {
+            this.logout();
+            this.reloadPage();
+            this.route.navigate(['/login']);
+          }, 2000);
         }
       }
     );
@@ -44,20 +57,21 @@ export class HomeComponent {
     this.displayNewPost = !this.displayNewPost;
   }
   onFileChange(e: any) {
-    console.log(e.target.files[0]);
-    this.image = e.target.files[0];
+    this.image = e.files[0];
   }
 
   onSubmit() {
-    console.log(this.description);
-    console.log(this.image);
+    if (
+      this.description === '' ||
+      this.image === undefined ||
+      this.image === null
+    )
+      return;
     const formBody = {
       title: this.description.split(' ')[0] || this.description,
       description: this.description,
       author: this.user.firstname + ' ' + this.user.lastname,
     };
-    console.log(this.user);
-
     const formData = new FormData();
     formData.append('file', this.image);
     formData.append('body', JSON.stringify(formBody));
@@ -72,5 +86,8 @@ export class HomeComponent {
   }
   reloadPage(): void {
     window.location.reload();
+  }
+  logout() {
+    localStorage.removeItem('token');
   }
 }

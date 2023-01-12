@@ -43,6 +43,11 @@ form {
     textarea {
       min-height: 100px;
     }
+    .browse {
+      border: 2px solid red;
+      padding: 0.4em 0.8em;
+      border-radius: 6px;
+    }
   }
   .submit-btn {
     display: flex;

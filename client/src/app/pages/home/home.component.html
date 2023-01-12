@@ -40,14 +40,17 @@
         <label for="float-input">Description</label>
       </span>
       <span class="input-group">
-        <input
-          type="file"
-          name="image"
-          placeholder="Browse"
-          (change)="onFileChange($event)"
-        />
+        <p-fileUpload
+          name="demo[]"
+          accept="image/*"
+          [maxFileSize]="maxFileSize"
+          [auto]="true"
+          [customUpload]="true"
+          (uploadHandler)="onFileChange($event)"
+        ></p-fileUpload>
       </span>
       <input pButton type="submit" class="submit-btn" />
     </form>
   </div>
 </p-dialog>
+<p-toast></p-toast>
