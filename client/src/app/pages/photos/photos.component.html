@@ -9,10 +9,12 @@
         *ngFor="let post of posts"
       >
         <ng-template pTemplate="header">
-          <img
-            alt="card-image"
+          <p-image
             src="http://localhost:4000/images/{{ post.imageRef }}"
-          />
+            alt="Image"
+            width="250"
+            [preview]="true"
+          ></p-image>
         </ng-template>
         <p contenteditable="true">
           {{ post.description }}

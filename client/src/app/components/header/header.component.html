@@ -6,9 +6,9 @@
     </a>
     <div class="right">
       <img
+        *ngIf="user.avatar"
         src="http://localhost:4000/avatar/{{ user.avatar }}"
         class="avatar"
-        a
         alt="avatar"
       />
       <button

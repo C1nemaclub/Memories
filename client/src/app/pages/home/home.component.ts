@@ -65,8 +65,14 @@ export class HomeComponent {
       this.description === '' ||
       this.image === undefined ||
       this.image === null
-    )
+    ) {
+      this.toast.add({
+        severity: 'error',
+        summary: 'Info',
+        detail: 'Please fill all fields',
+      });
       return;
+    }
     const formBody = {
       title: this.description.split(' ')[0] || this.description,
       description: this.description,
@@ -77,7 +83,6 @@ export class HomeComponent {
     formData.append('body', JSON.stringify(formBody));
     formData.append('authorid', this.user.id);
     this.postService.createPost(formData).subscribe((res) => {
-      console.log(res);
       this.displayNewPost = false;
       this.image = '';
       this.description = '';

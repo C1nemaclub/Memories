@@ -48,5 +48,18 @@
         }
       }
     }
+    .posts {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 10px;
+      p {
+        font-size: 1.1rem;
+      }
+      span {
+        font-weight: 500;
+        font-size: 1.2rem;
+      }
+    }
   }
 }

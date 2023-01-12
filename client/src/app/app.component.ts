@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'client';
   user: User;
   token: string = '';
   subscription: Subscription;

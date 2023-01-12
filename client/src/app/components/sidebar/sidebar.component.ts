@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { UserService } from '../..//services/user.service';
 import { Subscription, Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,12 +12,25 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent {
   user: any = '';
+  postAmount: number = 0;
   subscription: Subscription;
-  constructor(private userService: UserService, private route: Router) {}
+  constructor(
+    private userService: UserService,
+    private route: Router,
+    private title: Title
+  ) {}
 
   ngOnInit(): void {
+    const url = this.route.url.replace('/', '').toString();
     this.userService.subject.subscribe((res) => {
       this.user = res;
+      this.title.setTitle(
+        url[0].toUpperCase() +
+          url.slice(1) +
+          ' | ' +
+          this.user.firstname +
+          ' | Soziali'
+      );
     });
   }
 

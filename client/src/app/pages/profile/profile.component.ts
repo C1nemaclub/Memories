@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +13,9 @@ export class ProfileComponent {
   user: any = '';
   displayAvatarModal: boolean = false;
   image: any;
+  postAmount: number = 0;
+  subscription: Subscription;
+
   constructor(
     private userService: UserService,
     private route: Router,
@@ -20,6 +24,11 @@ export class ProfileComponent {
 
   ngOnInit() {
     this.user = this.userService.getUser();
+    this.subscription = this.postService
+      .getPostsAsObservable()
+      .subscribe((res) => {
+        this.postAmount = res.length;
+      });
   }
 
   onSubmit() {

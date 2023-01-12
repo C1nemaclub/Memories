@@ -19,6 +19,7 @@ export class PhotosComponent {
     this.user = this.userService.getUser();
     this.postService.getPostsByUser(this.user.id).subscribe((res) => {
       this.posts = res;
+      this.postService.setPosts(this.posts);
     });
   }
 }
