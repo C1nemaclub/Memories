@@ -76,4 +76,12 @@ export class UserService {
       }),
     });
   }
+  updateAvatar(FormData: any, userId: any): any {
+    return this.http.put<any>(`api/v1/users/me/${userId}`, FormData, {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        Authorization: 'Bearer ' + this.token,
+      }),
+    });
+  }
 }

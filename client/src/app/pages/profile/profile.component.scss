@@ -2,4 +2,14 @@
   font-family: "Poppins";
   display: flex;
   gap: 58px;
+  .main-content {
+    padding: 2em;
+    background: #fff;
+    width: 100%;
+    .avatar {
+      cursor: pointer;
+      border-radius: 1000px;
+      object-fit: cover;
+    }
+  }
 }

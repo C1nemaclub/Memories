@@ -5,7 +5,12 @@
       <p>Soziali</p>
     </a>
     <div class="right">
-      <img src="../../../assets/Logo.svg" class="avatar" a alt="avatar" />
+      <img
+        src="http://localhost:4000/avatar/{{ user.avatar }}"
+        class="avatar"
+        a
+        alt="avatar"
+      />
       <button (click)="handleLogout()" pButton>Logout</button>
     </div>
   </nav>

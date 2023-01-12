@@ -1,7 +1,11 @@
 <div class="post-card">
   <div class="top">
     <div class="user">
-      <img src="../../../assets/Logo.svg" alt="avatar" class="avatar" />
+      <img
+        src="http://localhost:4000/avatar/{{ post.user.avatar }}"
+        alt="avatar"
+        class="avatar"
+      />
       <p class="name">{{ post.user.firstname }} {{ post.user.lastname }}</p>
     </div>
   </div>

@@ -67,6 +67,10 @@ export class HomeComponent {
       this.displayNewPost = false;
       this.image = '';
       this.description = '';
+      this.reloadPage();
     });
+  }
+  reloadPage(): void {
+    window.location.reload();
   }
 }

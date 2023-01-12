@@ -1,7 +1,11 @@
 <div class="sidebar">
   <nav>
     <div class="profile">
-      <img src="../../../assets/Logo.svg" alt="" />
+      <img
+        src="http://localhost:4000/avatar/{{ user.avatar }}"
+        alt=""
+        class="avatar"
+      />
       <p class="name" *ngIf="user">{{ user.firstname }}</p>
     </div>
     <ul>

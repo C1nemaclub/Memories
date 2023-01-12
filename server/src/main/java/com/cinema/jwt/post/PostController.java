@@ -49,7 +49,10 @@ public class PostController {
     }
 
     @PostMapping("/create")
+
     public ResponseEntity<Post> createPost(@RequestParam("file")MultipartFile file, @RequestParam("body") String request, @RequestParam("authorid") Integer authorid) throws JsonProcessingException, FileNotFoundException {
+        System.out.println(file);
+        System.out.println(request);
         try{
 
             FileOutputStream imageOutput = new FileOutputStream(UPLOAD_DIR  + file.getOriginalFilename());
@@ -59,7 +62,7 @@ public class PostController {
             ObjectMapper objectMapper = new ObjectMapper(); // Create new object mapper
             Post post = objectMapper.readValue(request, Post.class); //Map the Request body to the Post class Fields
             post.setUser(user.get()); //Set the user to the post with the user found before
-            post.getUser().setPassword(null); //Set the user password to null from the post
+            //post.getUser().setPassword(null); //Set the user password to null from the post
             post.setImageRef(file.getOriginalFilename());
             postRepository.save(post);
 

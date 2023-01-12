@@ -51,7 +51,9 @@ public class UserController {
                 user.get().getFirstname(),
                 user.get().getLastname(),
                 user.get().getAvatar(),
+                user.get().getId(),
                 user.get().getPosts());
+
         return ResponseEntity.ok().body(userRequest);
         } else {
             return ResponseEntity.notFound().build();

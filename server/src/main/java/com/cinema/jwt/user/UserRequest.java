@@ -19,6 +19,7 @@ public class UserRequest
     private String firstname;
     private String lastname;
     private String avatar;
+    private Integer id;
     private Set posts;
 
 

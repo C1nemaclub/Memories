@@ -24,7 +24,7 @@ public class AuthenticationService {
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .email(request.getEmail())
-                .avatar("default")
+                .avatar("default.png")
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .build();

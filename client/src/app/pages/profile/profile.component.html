@@ -2,7 +2,37 @@
   <app-sidebar></app-sidebar>
   <div class="main-content">
     <div class="center">
-      <h1>Profile</h1>
+      <img
+        src="http://localhost:4000/avatar/{{ user.avatar }}"
+        alt="avatar"
+        class="avatar"
+        (click)="toggleAvatarModal()"
+      />
+      <div class="info">
+        <h1>Profile</h1>
+        <p>{{ user.firstname }} {{ user.lastname }}</p>
+        <p>{{ user.email }}</p>
+      </div>
+      <div class="posts">
+        <p>Posts</p>
+        <span>1</span>
+      </div>
     </div>
   </div>
 </section>
+
+<p-dialog header="Change Profile Picture" [(visible)]="displayAvatarModal">
+  <div class="form-container">
+    <form (ngSubmit)="onSubmit()">
+      <span class="input-group">
+        <input
+          type="file"
+          name="image"
+          placeholder="Browse"
+          (change)="onFileChange($event)"
+        />
+      </span>
+      <input pButton type="submit" class="submit-btn" />
+    </form>
+  </div>
+</p-dialog>

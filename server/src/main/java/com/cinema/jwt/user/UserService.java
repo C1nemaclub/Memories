@@ -13,6 +13,7 @@ import java.util.Optional;
 public class UserService {
 
     private static final String UPLOAD_FOLDER = "src/web/avatar/";
+    private static final String UPLOAD_DIR = "src/main/resources/static/avatar/";
 
     private final UserRepository userRepository;
 
@@ -28,10 +29,11 @@ public class UserService {
                     user.get().getFirstname(),
                     user.get().getLastname(),
                     user.get().getAvatar(),
+                    user.get().getId(),
                     user.get().getPosts());
             return userResponse;
         } else {
-            return new UserRequest(null ,null, null, null, null);
+            return new UserRequest(null,null ,null, null, null, null);
         }
     }
 
@@ -39,13 +41,13 @@ public class UserService {
 
         Optional<User> user = userRepository.findById(id);
         if(user.isPresent()){
-        String saveRoute = UPLOAD_FOLDER + user.get().getId() + file.getOriginalFilename();
+        String saveRoute = UPLOAD_DIR + user.get().getId() + file.getOriginalFilename();
 
         FileOutputStream output = new FileOutputStream(saveRoute);
         output.write(file.getBytes());
         Path path = Path.of(saveRoute).toAbsolutePath();
 
-        user.get().setAvatar(path.toString());
+        user.get().setAvatar(user.get().getId() + file.getOriginalFilename());
         userRepository.save(user.get());
             return "Avatar successfully saved";
         } else{
