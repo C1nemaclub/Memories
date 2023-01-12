@@ -24,6 +24,7 @@ import { ToastModule } from 'primeng/toast';
 import { FileUploadModule } from 'primeng/fileupload';
 import { PhotosComponent } from './pages/photos/photos.component';
 import { CardModule } from 'primeng/card';
+import { UserComponent } from './pages/user/user.component';
 
 const appRoutes: Routes = [
   {
@@ -50,6 +51,10 @@ const appRoutes: Routes = [
     path: 'photos',
     component: PhotosComponent,
   },
+  {
+    path: 'user/:id/:name',
+    component: UserComponent,
+  },
 ];
 
 @NgModule({
@@ -64,6 +69,7 @@ const appRoutes: Routes = [
     PostComponent,
     ProfileComponent,
     PhotosComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

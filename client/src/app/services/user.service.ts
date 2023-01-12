@@ -82,4 +82,13 @@ export class UserService {
       }),
     });
   }
+
+  getUserById(userId: any): any {
+    return this.http.get<any>(`api/v1/users/user/${userId}`, {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        Authorization: 'Bearer ' + this.token,
+      }),
+    });
+  }
 }

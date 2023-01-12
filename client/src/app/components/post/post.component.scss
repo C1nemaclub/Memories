@@ -3,13 +3,18 @@
   padding: 2em;
   .top {
     .user {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 10px;
+      a {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+      }
       .name {
         color: #494444;
         font-weight: 400;
+        &:hover {
+          color: var(--main-color);
+        }
       }
       .avatar {
         border-radius: 100px;

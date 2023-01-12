@@ -29,7 +29,8 @@ export class SidebarComponent {
           url.slice(1) +
           ' | ' +
           this.user.firstname +
-          ' | Soziali'
+          ' ' +
+          this.user.lastname
       );
     });
   }

@@ -1,0 +1,33 @@
+<section class="section user-section">
+  <div class="content">
+    <div class="img-container">
+      <img src="http://localhost:4000/avatar/{{ user.avatar }}" alt="" />
+    </div>
+    <div class="name">
+      <span>Name: </span>
+      <p>{{ user.firstname }} {{ user.lastname }}</p>
+    </div>
+    <h2>Posts</h2>
+    <div class="post-grid">
+      <!-- <app-post *ngFor="let post of posts" [post]="post"></app-post> -->
+      <p-card
+        [style]="{ width: '360px' }"
+        styleClass="shadow-2"
+        class="post-card"
+        *ngFor="let post of posts"
+      >
+        <ng-template pTemplate="header">
+          <p-image
+            src="http://localhost:4000/images/{{ post.imageRef }}"
+            alt="Image"
+            [preview]="true"
+            [style]="{ width: '360px', objectFit: 'cover' }"
+          ></p-image>
+        </ng-template>
+        <p contenteditable="true">
+          {{ post.description }}
+        </p>
+      </p-card>
+    </div>
+  </div>
+</section>
